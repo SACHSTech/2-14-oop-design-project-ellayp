@@ -30,14 +30,4 @@ public class Artists {
     public void removeSong(Songs song) {
         songs.remove(song);
     }
-
-    public List<Songs> getSongsByGenre(String genre) {
-        List<Songs> result = new ArrayList<>();
-        for (Songs song : songs) {
-            if (song.getGenre().equalsIgnoreCase(genre)) {
-                result.add(song);
-            }
-        }
-        return result;
-    }
 }

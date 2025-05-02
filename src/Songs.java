@@ -1,4 +1,5 @@
 import java.util.*;
+
 public class Songs {
     private String title;
     private String artist;
@@ -8,7 +9,6 @@ public class Songs {
     private String genre;
     private List<Songs> songs;
     
-
     public Songs(String title, String artist, String album, int releaseYear, int duration, String genre) {
         this.title = title;
         this.artist = artist;
@@ -51,5 +51,15 @@ public class Songs {
         int minutes = duration / 60;
         int seconds = duration % 60;
         return minutes + ":" + String.format("%02d", seconds);
+    }
+
+    public List<Songs> getSongsByGenre(String genre) {
+        List<Songs> result = new ArrayList<>();
+        for (Songs song : songs) {
+            if (song.getGenre().equalsIgnoreCase(genre)) {
+                result.add(song);
+            }
+        }
+        return result;
     }
 }
