@@ -7,7 +7,7 @@ public class Main extends ReadCSV {
     public static void main(String[] args) {
         try {
             List<Songs> songs = ReadCSV.readSongs();
-            System.out.println("Songs and their Details: ");
+            System.out.println("\nSongs and their Details: ");
             for (Songs song : songs) {
                 System.out.println("Title: " + song.getTitle());
                 System.out.println("Artist: " + song.getArtist());
@@ -20,26 +20,37 @@ public class Main extends ReadCSV {
 
             
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Would you like to filter songs by genre? (yes/no)");
+            System.out.println("Would you like to find a song? (yes/no)");
             if (scanner.nextLine().equalsIgnoreCase("yes")) {
-                //Scanner scanner = new Scanner(System.in);
-                System.out.println("Enter a genre to filter songs:");
-                String genre = scanner.nextLine();
+                System.out.println("Enter the song genre (or click enter to skip): ");
+                String genreInput = scanner.nextLine().trim();
+                String genre = null;
+                if (!genreInput.isEmpty()) {
+                    genre = genreInput;
+                }
+                System.out.println("Enter the artist (or click enter to skip): ");
+                String artistInput = scanner.nextLine().trim();
+                String artist = null;
+                if (!artistInput.isEmpty()) {
+                    artist = artistInput;
+                }
 
-                List<Songs> filteredSongs = new ArrayList<>();
-                for (Songs song : songs) {
-                    if (song.getGenre().equalsIgnoreCase(genre)) {
-                        filteredSongs.add(song);
+                List<Songs> filtered = filterSongs(songs, genre, artist);
+                if (filtered.isEmpty()) {
+                    System.out.println("No songs match your filter. Please try again.");
+                } else {
+                    System.out.println("\nFiltered Songs: ");
+                    for (Songs song : filtered) {
+                        System.out.println(song.getTitle() + " by " + song.getArtist());
                     }
                 }
-                System.out.println();
-                System.out.println("Filtered Songs:");
-                for (Songs song : filteredSongs) {
-                    System.out.println(song.getTitle() + " by " + song.getArtist());
-                }
+
+                //Scanner scanner = new Scanner(System.in);
+                // System.out.println("Enter a genre to filter songs:");
+                // String genre = scanner.nextLine();
             } 
             
-            System.out.println("Would you like to add a song to your collection? (yes/no)");
+            System.out.println("\nWould you like to add a song to your collection? (yes/no)");
             if (scanner.nextLine().equalsIgnoreCase("yes")) {
                 //Scanner scanner = new Scanner(System.in);
                 System.out.println("Enter the title of the song:");
@@ -64,6 +75,17 @@ public class Main extends ReadCSV {
         catch (IOException e) {
             System.out.println("Error. Please try again. " + e.getMessage());
         }
+    }
+
+    public static List<Songs> filterSongs(List<Songs> songs, String genre, String artist) {
+        List<Songs> filteredSongs = new ArrayList<>();
+        for (Songs song : songs) {
+            if ((genre == null || song.getGenre().equalsIgnoreCase(genre)) &&
+                (artist == null || song.getArtist().equalsIgnoreCase(artist))) {
+                filteredSongs.add(song);
+            }
+        }
+        return filteredSongs;
     }
     
 }
