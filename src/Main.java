@@ -18,7 +18,6 @@ public class Main extends ReadCSV {
                 System.out.println();
             }
 
-            
             Scanner scanner = new Scanner(System.in);
             System.out.println("Would you like to find a song? (yes/no)");
             if (scanner.nextLine().equalsIgnoreCase("yes")) {
@@ -44,15 +43,10 @@ public class Main extends ReadCSV {
                         System.out.println(song.getTitle() + " by " + song.getArtist());
                     }
                 }
-
-                //Scanner scanner = new Scanner(System.in);
-                // System.out.println("Enter a genre to filter songs:");
-                // String genre = scanner.nextLine();
             } 
             
             System.out.println("\nWould you like to add a song to your collection? (yes/no)");
             if (scanner.nextLine().equalsIgnoreCase("yes")) {
-                //Scanner scanner = new Scanner(System.in);
                 System.out.println("Enter the title of the song:");
                 String title = scanner.nextLine();
                 System.out.println("Enter the artist of the song:");
@@ -68,7 +62,45 @@ public class Main extends ReadCSV {
 
                 Songs newSong = new Songs(title, artist, album, releaseYear, duration, genre);
                 songs.add(newSong);
+                ReadCSV.appendSong(newSong);
                 System.out.println("Thanks! Song added.");
+            }
+
+            System.out.println("\nWould you like to create a playlist? (yes/no)");
+            if (scanner.nextLine().equalsIgnoreCase("yes")) {
+                System.out.println("Enter the title of the playlist:");
+                String playlistName = scanner.nextLine();
+                Playlists playlist = new Playlists(playlistName);
+
+                boolean addingSongs = true;
+                while (addingSongs) {
+                    System.out.println("Enter a song title to add (or type 'done' to finish):");
+                    String songTitle = scanner.nextLine();
+                    if (songTitle.equalsIgnoreCase("done")) {
+                        addingSongs = false;
+                    } else {
+                        boolean found = false;
+                        for (Songs song : songs) {
+                            if (song.getTitle().equalsIgnoreCase(songTitle)) {
+                                playlist.addSong(song);
+                                System.out.println("Added \"" + song.getTitle() + "\" to playlist.");
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found) {
+                            System.out.println("Song not found. Please try again.");
+                        }
+                    }
+                }
+                if (playlist.getSongs().isEmpty()) {
+                    System.out.println("No songs added to the playlist. The playlist was not saved.");
+                } else {
+                    ReadCSV.appendPlaylist(playlist);
+                    System.out.println("Playlist \"" + playlist.getTitle() + "\" created with " + playlist.getSongs().size() + " songs.");
+                    System.out.println("Total Duration: " + playlist.getPlaylistDuration() / 60 + " minutes");
+                    playlist.printSongs();
+                }
                 scanner.close();
             }
         }
@@ -87,5 +119,4 @@ public class Main extends ReadCSV {
         }
         return filteredSongs;
     }
-    
 }

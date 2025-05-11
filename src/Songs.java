@@ -7,7 +7,6 @@ public class Songs {
     private int releaseYear;
     private int duration; // in seconds
     private String genre;
-    // private List<Songs> songs;
     
     public Songs(String title, String artist, String album, int releaseYear, int duration, String genre) {
         this.title = title;
@@ -16,7 +15,6 @@ public class Songs {
         this.releaseYear = releaseYear;
         this.duration = duration;
         this.genre = genre;
-        //this.songs = new ArrayList<>();
     }
 
     public String getTitle() {
@@ -43,23 +41,9 @@ public class Songs {
         return duration;
     }
 
-    // public int getSongCount() {
-    //     return songs.size();
-    // }
-
     public String getDurationMinutes() {
         int minutes = duration / 60;
         int seconds = duration % 60;
         return minutes + ":" + String.format("%02d", seconds);
     }
-
-    // public List<Songs> getSongsByGenre(String genre) {
-    //     List<Songs> result = new ArrayList<>();
-    //     for (Songs song : songs) {
-    //         if (song.getGenre().equalsIgnoreCase(genre)) {
-    //             result.add(song);
-    //         }
-    //     }
-    //     return result;
-    // }
 }

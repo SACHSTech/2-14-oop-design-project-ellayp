@@ -1,5 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,5 +60,23 @@ public class ReadCSV {
         }
         playlistcsv.close();
         return playlists;
+    }
+
+    public static void appendSong(Songs song) throws IOException {
+        // Append the song to the CSV file
+        PrintWriter writer = new PrintWriter(new FileWriter("src/songs.csv", true));
+        writer.println(song.getTitle() + "," + song.getArtist() + "," + song.getAlbum() + "," + song.getReleaseYear() + "," + song.getDuration() + "," + song.getGenre());
+        writer.close();
+    }
+
+    public static void appendPlaylist(Playlists playlist) throws IOException {
+        // Append the playlist to the CSV file
+        PrintWriter writer = new PrintWriter(new FileWriter("src/playlists.csv", true));
+        StringBuilder line = new StringBuilder(playlist.getTitle());
+        for (Songs song : playlist.getSongs()) {
+            line.append(",").append(song.getTitle());
+        }
+        writer.println(line.toString());
+        writer.close();
     }
 }

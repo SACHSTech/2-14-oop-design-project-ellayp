@@ -17,6 +17,17 @@ public class Playlists {
         songs.add(song);
     }
 
+    public List<Songs> getSongs() {
+        return songs;
+    }
+
+    public void printSongs() {
+        System.out.println("Playlist:  " + title);
+        for (Songs song : songs) {
+            System.out.println("- " + song.getTitle() + " by " + song.getArtist());
+        }
+    }
+
     public int getPlaylistDuration() {
         int totalDuration = 0;
         for (Songs song : songs) {
