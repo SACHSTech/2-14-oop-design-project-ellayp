@@ -1,24 +1,13 @@
-// import java.util.*;
-
-public class Songs {
-    private String title;
+public class Songs extends MediaType {
     private String artist;
     private String album;
     private int releaseYear;
-    private int duration; // in seconds
-    private String genre;
-    
+
     public Songs(String title, String artist, String album, int releaseYear, int duration, String genre) {
-        this.title = title;
+        super (title, genre, duration);
         this.artist = artist;
         this.album = album;
         this.releaseYear = releaseYear;
-        this.duration = duration;
-        this.genre = genre;
-    }
-
-    public String getTitle() {
-        return title;
     }
 
     public String getArtist() {
@@ -33,21 +22,17 @@ public class Songs {
         return releaseYear;
     }
 
-    public String getGenre() {
-        return genre;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public String getDurationMinutes() {
-        int minutes = duration / 60;
-        int seconds = duration % 60;
-        return minutes + ":" + String.format("%02d", seconds);
-    }
-
     public boolean matchesFilter(String genre, String artist) {
         return (genre == null || this.genre.equalsIgnoreCase(genre)) && (artist == null || this.artist.equalsIgnoreCase(artist));
+    }
+    
+    public void printSongDetails() {
+        System.out.println("Title: " + title);
+        System.out.println("Artist: " + artist);
+        System.out.println("Album: " + album);
+        System.out.println("Release Year: " + releaseYear);
+        System.out.println("Duration: " + getDurationMinutes());
+        System.out.println("Genre: " + genre);
+        System.out.println();
     }
 }
