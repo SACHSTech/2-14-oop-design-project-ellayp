@@ -3,10 +3,20 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The DigitalSystem class represents a digital music system that allows users to manage songs and playlists.
+ * It provides methods to read songs and playlists from CSV files, filter songs, add new songs, and create playlists.
+ * @author E. Yap
+ */
 public class DigitalSystem {
     private List<Songs> songs;
     private List<Playlists> playlists;
 
+    /**
+     * Run method to start the digital system.
+     * It reads songs and playlists from CSV files, displays all songs,
+     * allows users to filter songs, add new songs, and create playlists.
+     */
     public void run() {
         try {
             songs = ReadCSV.readSongs();
@@ -25,13 +35,22 @@ public class DigitalSystem {
         }
     }
 
+    /**
+     * Displays all songs in the system.
+     */
     private void displayAllSongs() {
         System.out.println("\nSongs and their Details: ");
         for (Songs song : songs) {
-            song.printSongDetails();
+            song.printDetails();
         }
     }
 
+    /**
+     * Asks the user if they want to filter songs based on genre and artist.
+     * If yes, it prompts for the genre and artist,
+     * and displays the filtered songs if there are any.
+     * @param scanner The Scanner object for user input.
+     */
     private void songFilter(Scanner scanner) {
         System.out.println("Would you like to find a song? (yes/no)");
         if (scanner.nextLine().equalsIgnoreCase("yes")) {
@@ -58,6 +77,12 @@ public class DigitalSystem {
         } 
     }
 
+    /**
+     * Filters songs based on genre and artist.
+     * @param genre The genre to filter by.
+     * @param artist The artist to filter by.
+     * @return A list of filtered songs.
+     */ 
     private List<Songs> filterSongs(String genre, String artist) {
         List<Songs> filteredSongs = new ArrayList<>();
         for (Songs song : songs) {
@@ -68,6 +93,12 @@ public class DigitalSystem {
         return filteredSongs;
     }
 
+    /**
+     * Asks the user if they want to add a new song to the collection.
+     * If yes, it prompts for the song details and adds it to the collection.
+     * @param scanner The Scanner object for user input.
+     * @throws IOException If there is an error writing to the CSV file.
+     */
     private void addSong(Scanner scanner) throws IOException {
         System.out.println("\nWould you like to add a song to your collection? (yes/no)");
         if (scanner.nextLine().equalsIgnoreCase("yes")) {
@@ -92,6 +123,13 @@ public class DigitalSystem {
         }
     }
 
+    /**
+     * Asks the user if they want to create a playlist.
+     * If yes, it prompts for the playlist title and song titles to add to the playlist.
+     * @param scanner The Scanner object for user input.
+     * @param playlists The list of existing playlists.
+     * @throws IOException If there is an error writing to the CSV file.
+     */
     private void createPlaylist(Scanner scanner, List<Playlists> playlists) throws IOException {
         System.out.println("\nWould you like to create a playlist? (yes/no)");
         if (scanner.nextLine().equalsIgnoreCase("yes")) {

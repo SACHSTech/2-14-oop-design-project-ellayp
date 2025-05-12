@@ -6,6 +6,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The ReadCSV class provides methods to read and write songs and playlists from/to CSV files.
+ * It includes methods to read songs, artists, and playlists from CSV files,
+ * as well as methods to append new songs and playlists to the respective CSV files.
+ * @author E. Yap
+ */
 public class ReadCSV {
     public static List<Songs> readSongs() throws IOException {
         BufferedReader songscsv = new BufferedReader (new FileReader("src/songs.csv"));
@@ -31,6 +37,11 @@ public class ReadCSV {
         return songs;
     }
 
+    /**
+     * Reads artists from the CSV file and returns a list of Artists objects.
+     * @return A list of Artists objects.
+     * @throws IOException If an error occurs while reading the file.
+     */
     public static List<Artists> readArtists() throws IOException {
         BufferedReader artistcsv = new BufferedReader (new FileReader("src/songs.csv"));
         artistcsv.readLine(); // Skip header line
@@ -47,6 +58,11 @@ public class ReadCSV {
         return artists;
     }
 
+    /**
+     * Reads playlists from the CSV file and returns a list of Playlists objects.
+     * @return A list of Playlists objects.
+     * @throws IOException If an error occurs while reading the file.
+     */
     public static List<Playlists> readPlaylists() throws IOException {
         BufferedReader playlistcsv = new BufferedReader (new FileReader("src/playlists.csv"));
         playlistcsv.readLine(); // Skip header line
@@ -62,6 +78,11 @@ public class ReadCSV {
         return playlists;
     }
 
+    /**
+     * Appends a new song to the CSV file.
+     * @param song The song to be appended.
+     * @throws IOException If an error occurs while writing to the file.
+     */
     public static void appendSong(Songs song) throws IOException {
         // Append the song to the CSV file
         PrintWriter writer = new PrintWriter(new FileWriter("src/songs.csv", true));
@@ -69,6 +90,11 @@ public class ReadCSV {
         writer.close();
     }
 
+    /**
+     * Appends a new playlist to the CSV file.
+     * @param playlist The playlist to be appended.
+     * @throws IOException If an error occurs while writing to the file.
+     */
     public static void appendPlaylist(Playlists playlist) throws IOException {
         // Append the playlist to the CSV file
         PrintWriter writer = new PrintWriter(new FileWriter("src/playlists.csv", true));
