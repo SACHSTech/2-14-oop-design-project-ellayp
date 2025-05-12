@@ -35,4 +35,9 @@ public class Playlists {
         }
         return totalDuration;
     }
+
+    public String playlistDurationInMinutes() {
+        int totalDuration = getPlaylistDuration();
+        return (totalDuration / 60) + ":" + String.format("%02d", totalDuration % 60);
+    }
 }

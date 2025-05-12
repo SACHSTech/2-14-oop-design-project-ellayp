@@ -31,7 +31,7 @@ public class Songs extends MediaType {
         System.out.println("Artist: " + artist);
         System.out.println("Album: " + album);
         System.out.println("Release Year: " + releaseYear);
-        System.out.println("Duration: " + getDurationMinutes());
+        System.out.println("Duration: " + songDurationInMinutes());
         System.out.println("Genre: " + genre);
         System.out.println();
     }

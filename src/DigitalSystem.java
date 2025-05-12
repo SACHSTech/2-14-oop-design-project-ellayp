@@ -30,7 +30,7 @@ public class DigitalSystem {
             System.out.println("Artist: " + song.getArtist());
             System.out.println("Album: " + song.getAlbum());
             System.out.println("Release Year: " + song.getReleaseYear());
-            System.out.println("Duration: " + song.getDurationMinutes());
+            System.out.println("Duration: " + song.songDurationInMinutes());
             System.out.println("Genre: " + song.getGenre());
             System.out.println();
         }

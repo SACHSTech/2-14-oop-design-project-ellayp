@@ -19,7 +19,7 @@ public class Artists {
         return genre;
     }
 
-    public List<Songs> songs() {
+    public List<Songs> getSongs() {
         return songs;
     }
 

@@ -21,7 +21,7 @@ public class MediaType {
         return duration;
     }
 
-    public String getDurationMinutes() {
+    public String songDurationInMinutes() {
         int minutes = duration / 60;
         int seconds = duration % 60;
         return minutes + ":" + String.format("%02d", seconds);
