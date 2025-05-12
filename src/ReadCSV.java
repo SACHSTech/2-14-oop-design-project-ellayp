@@ -32,7 +32,7 @@ public class ReadCSV {
     }
 
     public static List<Artists> readArtists() throws IOException {
-        BufferedReader artistcsv = new BufferedReader (new FileReader("src/artists.csv"));
+        BufferedReader artistcsv = new BufferedReader (new FileReader("src/songs.csv"));
         artistcsv.readLine(); // Skip header line
         String line;
         List<Artists> artists = new ArrayList<>();

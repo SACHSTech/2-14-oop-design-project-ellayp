@@ -27,7 +27,13 @@ public class Artists {
         songs.add(song);
     }
 
-    public void removeSong(Songs song) {
-        songs.remove(song);
+    public List<Songs> getSongsReleasedAfter(int year) {
+        List<Songs> releasedSongs = new ArrayList<>();
+        for (Songs song : songs) {
+            if (song.getReleaseYear() > year) {
+                releasedSongs.add(song);
+            }
+        }
+        return releasedSongs;
     }
 }

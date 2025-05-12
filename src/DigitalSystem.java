@@ -5,16 +5,18 @@ import java.util.Scanner;
 
 public class DigitalSystem {
     private List<Songs> songs;
+    private List<Playlists> playlists;
 
     public void run() {
         try {
             songs = ReadCSV.readSongs();
+            playlists = ReadCSV.readPlaylists();
             displayAllSongs();
 
             Scanner scanner = new Scanner(System.in);
             songFilter(scanner);
             addSong(scanner);
-            createPlaylist(scanner);
+            createPlaylist(scanner, playlists);
             scanner.close();
         }
 
@@ -26,13 +28,7 @@ public class DigitalSystem {
     private void displayAllSongs() {
         System.out.println("\nSongs and their Details: ");
         for (Songs song : songs) {
-            System.out.println("Title: " + song.getTitle());
-            System.out.println("Artist: " + song.getArtist());
-            System.out.println("Album: " + song.getAlbum());
-            System.out.println("Release Year: " + song.getReleaseYear());
-            System.out.println("Duration: " + song.songDurationInMinutes());
-            System.out.println("Genre: " + song.getGenre());
-            System.out.println();
+            song.printSongDetails();
         }
     }
 
@@ -65,7 +61,7 @@ public class DigitalSystem {
     private List<Songs> filterSongs(String genre, String artist) {
         List<Songs> filteredSongs = new ArrayList<>();
         for (Songs song : songs) {
-            if ((genre == null || song.getGenre().equalsIgnoreCase(genre)) && (artist == null || song.getArtist().equalsIgnoreCase(artist))) {
+            if (song.matchesFilter(genre, artist)) {
                 filteredSongs.add(song);
             }
         }
@@ -90,16 +86,13 @@ public class DigitalSystem {
 
             Songs newSong = new Songs(title, artist, album, releaseYear, duration, genre);
             songs.add(newSong);
-            try {
-                ReadCSV.appendSong(newSong);
-                System.out.println("Song added successfully!");
-            } catch (IOException e) {
-                System.out.println("Error adding song. Try again! " + e.getMessage());
-            }
+            ReadCSV.appendSong(newSong);
+            System.out.println("Song added successfully!");
+
         }
     }
 
-    private void createPlaylist(Scanner scanner) throws IOException {
+    private void createPlaylist(Scanner scanner, List<Playlists> playlists) throws IOException {
         System.out.println("\nWould you like to create a playlist? (yes/no)");
         if (scanner.nextLine().equalsIgnoreCase("yes")) {
             System.out.println("Enter the title of the playlist:");

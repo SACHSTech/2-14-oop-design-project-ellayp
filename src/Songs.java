@@ -4,7 +4,7 @@ public class Songs extends MediaType {
     private int releaseYear;
 
     public Songs(String title, String artist, String album, int releaseYear, int duration, String genre) {
-        super (title, genre, duration);
+        super(title, genre, duration);
         this.artist = artist;
         this.album = album;
         this.releaseYear = releaseYear;
