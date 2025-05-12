@@ -112,8 +112,7 @@ public class Main extends ReadCSV {
     public static List<Songs> filterSongs(List<Songs> songs, String genre, String artist) {
         List<Songs> filteredSongs = new ArrayList<>();
         for (Songs song : songs) {
-            if ((genre == null || song.getGenre().equalsIgnoreCase(genre)) &&
-                (artist == null || song.getArtist().equalsIgnoreCase(artist))) {
+            if (song.matchesFilter(genre, artist)) {
                 filteredSongs.add(song);
             }
         }

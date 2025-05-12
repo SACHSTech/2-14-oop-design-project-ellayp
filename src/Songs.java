@@ -46,4 +46,8 @@ public class Songs {
         int seconds = duration % 60;
         return minutes + ":" + String.format("%02d", seconds);
     }
+
+    public boolean matchesFilter(String genre, String artist) {
+        return (genre == null || this.genre.equalsIgnoreCase(genre)) && (artist == null || this.artist.equalsIgnoreCase(artist));
+    }
 }
