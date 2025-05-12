@@ -26,7 +26,8 @@ public class Songs extends MediaType {
         return (genre == null || this.genre.equalsIgnoreCase(genre)) && (artist == null || this.artist.equalsIgnoreCase(artist));
     }
     
-    public void printSongDetails() {
+    @Override
+    public void printDetails() {
         System.out.println("Title: " + title);
         System.out.println("Artist: " + artist);
         System.out.println("Album: " + album);

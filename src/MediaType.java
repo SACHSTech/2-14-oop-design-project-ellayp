@@ -21,6 +21,12 @@ public class MediaType {
         return duration;
     }
 
+    public void printDetails() {
+        System.out.println("Title: " + title);
+        System.out.println("Genre: " + genre);
+        System.out.println("Duration: " + songDurationInMinutes());
+    }
+
     public String songDurationInMinutes() {
         int minutes = duration / 60;
         int seconds = duration % 60;
