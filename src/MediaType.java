@@ -5,9 +5,9 @@
  * @author E. Yap
  */
 public class MediaType {
-    protected String title;
-    protected String genre;
-    protected int duration; // in seconds
+    private String title;
+    private String genre;
+    private int duration; // in seconds
 
     /**
      * Constructor to create a MediaType object with a title, genre, and duration.

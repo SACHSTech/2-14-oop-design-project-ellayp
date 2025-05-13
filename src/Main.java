@@ -4,7 +4,7 @@ public class Main {
      * @param args Command line arguments.
      * @author E. Yap
      */
-    public static void main(String[] args) {
+public static void main(String[] args) {
         DigitalSystem digitalSystem = new DigitalSystem();
         digitalSystem.run();
     }

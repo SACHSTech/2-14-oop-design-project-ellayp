@@ -56,7 +56,7 @@ public class Songs extends MediaType {
      * @return True if the song matches the filter, false otherwise.
      */
     public boolean matchesFilter(String genre, String artist) {
-        return (genre == null || this.genre.equalsIgnoreCase(genre)) && (artist == null || this.artist.equalsIgnoreCase(artist));
+        return (genre == null || this.getGenre().equalsIgnoreCase(genre)) && (artist == null || this.artist.equalsIgnoreCase(artist));
     }
     
     /**
@@ -67,12 +67,12 @@ public class Songs extends MediaType {
      */
     @Override
     public void printDetails() {
-        System.out.println("Title: " + title);
+        System.out.println("Title: " + getTitle());
         System.out.println("Artist: " + artist);
         System.out.println("Album: " + album);
         System.out.println("Release Year: " + releaseYear);
         System.out.println("Duration: " + songDurationInMinutes());
-        System.out.println("Genre: " + genre);
+        System.out.println("Genre: " + getGenre());
         System.out.println();
     }
 }
