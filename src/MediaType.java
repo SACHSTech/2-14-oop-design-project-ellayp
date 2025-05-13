@@ -4,7 +4,7 @@
  * to print the details of the media type.
  * @author E. Yap
  */
-public class MediaType {
+public abstract class MediaType {
     private String title;
     private String genre;
     private int duration; // in seconds
@@ -20,6 +20,11 @@ public class MediaType {
         this.genre = genre;
         this.duration = duration;
     }
+
+    /**
+     * Prints the details of the media type.
+     */
+    public abstract void printDetails();
 
     /**
      * Gets the title of the media type.
@@ -43,15 +48,6 @@ public class MediaType {
      */
     public int getDuration() {
         return duration;
-    }
-
-    /**
-     * Prints the details of the media type.
-     */
-    public void printDetails() {
-        System.out.println("Title: " + title);
-        System.out.println("Genre: " + genre);
-        System.out.println("Duration: " + songDurationInMinutes());
     }
 
     /**
