@@ -13,6 +13,11 @@ import java.util.List;
  * @author E. Yap
  */
 public class ReadCSV {
+    /**
+     * Reads songs from the CSV file and returns a list of Songs objects.
+     * @return A list of Songs objects.
+     * @throws IOException If an error occurs while reading the file.
+     */
     public static List<Songs> readSongs() throws IOException {
         BufferedReader songscsv = new BufferedReader (new FileReader("src/songs.csv"));
         songscsv.readLine(); // Skip header line
